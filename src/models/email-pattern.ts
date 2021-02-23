@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
  
-const emailPatternSchema = new mongoose.Schema(
+
+//mongoose modal for saving email_pattern in the db
+const companyEmailPatternSchema = new mongoose.Schema(
   {
       email_pattern: {
         type: String
@@ -14,4 +16,4 @@ const emailPatternSchema = new mongoose.Schema(
   });
 
  
-export default mongoose.model('EmailPattern', emailPatternSchema);
+export default mongoose.model('CompanyEmailPattern', companyEmailPatternSchema);
