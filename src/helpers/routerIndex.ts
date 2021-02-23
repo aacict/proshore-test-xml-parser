@@ -1,12 +1,12 @@
 import {Router} from 'express';
 import userRoute from '../components/User/userRoute';
-import staticPagesRoute from '../components/staticPages/staticPagesRoute';
+import pagesRoute from '../components/pages/pagesRoute';
 
 
 const router = () => {
   const router:any = Router();
   userRoute(router);
-  staticPagesRoute(router);
+  pagesRoute(router);
   return router;
 };
 

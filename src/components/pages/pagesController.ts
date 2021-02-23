@@ -1,10 +1,10 @@
 
 const services = {
     getNameEmailForm: (req, res, next)=> {
-      res.render('name-email-form');
+      res.render('userPage',{page:'user-info'});
     },
     getNameDomainForm: (req, res, next)=> {
-      res.render('name-domain-form');
+      res.render('userPage',{page:'domain-email'});
     }
 }
 

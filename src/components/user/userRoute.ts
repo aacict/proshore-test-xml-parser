@@ -5,7 +5,7 @@ const routes = (router: any) => {
   router.post("/user-info", userController.addUserEmailPattern);
 
   //route to post name and domain to get domain email
-  router.post("/get-user-email", userController.getDomainEmail);
+  router.post("/domain-email", userController.getDomainEmail);
 
 };
 
