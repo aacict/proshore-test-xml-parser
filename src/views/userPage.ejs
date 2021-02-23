@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<title>EJS Is Fun</title>
+<title>Email guess app</title>
 
 <!-- CSS (load bootstrap from a CDN) -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -14,18 +14,28 @@
   <form action="<%= route %>" method="POST">
     <div class="form-group">
       <label for="name">Full name</label>
-      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter full name" name="full_name" required>
+      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter full name"  value="<%= oldValue && oldValue['full_name'] ? oldValue['full_name'] : ''%>" name="full_name" required>
     </div>
+    <% if(errors && errors['full_name']){%>
+      <span style="color: red;"><%= errors['full_name']%></span>
+      <% }%>
+    
     <% if(page === 'user-info'){%>
       <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<%= oldValue && oldValue['email'] ? oldValue['email'] : ''%>" name="email" required>
         </div>
+        <% if(errors && errors['email']){%>
+          <span style="color: red;"><%= errors['email']%></span>
+          <% }%>
       <% }else{ %>
       <div class="form-group">
-            <label for="full-name">Domain</label>
-            <input type="text" class="form-control" id="domain" placeholder="eg: com.np" name="domain" required>
+            <label for="domain">Domain</label>
+            <input type="text" class="form-control" id="domain" placeholder="eg: com.np" value="<%= oldValue && oldValue['domain'] ? oldValue['domain'] : ''%>" name="domain" required>
           </div>
+          <% if(errors && errors['domain']){%>
+            <span style="color: red;"><%= errors['domain']%></span>
+            <% }%>
         <%}%>
   
    
