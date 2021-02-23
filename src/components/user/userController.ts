@@ -55,9 +55,9 @@ const services = {
         }
 
         //change pattern to user email
-        let user_email:string = email_pattern['email_pattern'].replace(/{fn}/g, first_name)
-        user_email = middle_name ? user_email.replace(/{mn}/g, middle_name) : user_email.replace(/{mn}/g,  '');
-        user_email = last_name ? user_email.replace(/{ln}/g, last_name) : user_email.replace(/{ln}/g,  '');
+        let user_email:string = email_pattern['email_pattern'].replace(/{fn}/g, first_name.toLowerCase())
+        user_email = middle_name ? user_email.replace(/{mn}/g, middle_name.toLowerCase()) : user_email.replace(/[.|_]{mn}/g,  '');
+        user_email = last_name ? user_email.replace(/{ln}/g, last_name.toLowerCase()) : user_email.replace(/[.|_]{ln}/g,  '');
         return res.send(user_email);
       }
 }
