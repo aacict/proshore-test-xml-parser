@@ -15,4 +15,4 @@ STEPS:
 
 >>insert the command npm run server to start the server.
 
->>goto localhost:4000/docs to see open api swagger documentation.
+>>goto localhost:4000/.
