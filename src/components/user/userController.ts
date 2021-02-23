@@ -46,7 +46,7 @@ const services = {
         await EmailPattern.create({email_pattern, count: 1});
        }
 
-       return res.send(`successfully loaded to db`);
+       return res.render('userInformationPage', {page: 'user-info', email_pattern});
       },
 
       //takes user full name and splits full name into sub names and takes highest count email pattern of the domain  and attach user name as the pattern
@@ -57,14 +57,14 @@ const services = {
         //find the domain and sort with max count
         const email_pattern: any = await EmailPattern.findOne({email_pattern: {$regex: domain, $options: 'i'}}).sort({count : -1}).limit(1);
         if(!email_pattern){
-          return res.send('no pattern available for the domain')
+          return res.render('userInformationPage',{page: 'info'});
         }
 
         //change pattern to user email
         let user_email:string = email_pattern['email_pattern'].replace(/{fn}/g, first_name.toLowerCase())
         user_email = middle_name ? user_email.replace(/{mn}/g, middle_name.toLowerCase()) : user_email.replace(/[.|_]{mn}/g,  '');
         user_email = last_name ? user_email.replace(/{ln}/g, last_name.toLowerCase()) : user_email.replace(/[.|_]{ln}/g,  '');
-        return res.send(user_email);
+        return res.render('userInformationPage',{page: 'domain-email', user_email});
       }
 }
 
