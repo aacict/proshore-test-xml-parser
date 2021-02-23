@@ -14,6 +14,12 @@ const splitSubnamesFromFullname = async(fullname) => {
    }
   return {first_name, middle_name, last_name}
 };
+
+//regex to match the sub_name in the email ignoring inside the curly braces
+const getNameRegex = async (sub_name: string) => {
+  return new RegExp(`(?<![{\w])(${sub_name})(?![\w}])`,'gi')
+}
+
 const services = {
   //takes user full name and splits full name into sub names and make changes to email accordingly
       addUserEmailPattern: async(req: any, res: any, next:any)=> {
@@ -21,9 +27,9 @@ const services = {
         const email_parts: string = req.body['email'].trim().split('@')
 
         //regex for matching sub names in email
-        const first_name_reg:any = new RegExp(`(?<![{\w])(${first_name})(?![\w}])`,'gi');
-        const last_name_reg:any = new RegExp(`(?<![{\w])(${last_name})(?![\w}])`,'gi');
-        const mid_name_reg:any = new RegExp(`(?<![{\w])(${middle_name})(?![\w}])`,'gi');
+        const first_name_reg:any = await getNameRegex(first_name);
+        const last_name_reg:any = await getNameRegex(last_name);
+        const mid_name_reg:any = await getNameRegex(middle_name);
         
         //generating pattern and attach domain to the pattern
         let email_pattern:string = email_parts[0].replace(first_name_reg,'{fn}')
