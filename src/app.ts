@@ -1,8 +1,9 @@
 import express from 'express';
+import * as dotenv from 'dotenv';
+dotenv.config();
 import './config/dbConnection';
 import router from './helpers/routerIndex'
-import {config} from 'dotenv';
-config();
+
 
 const app: any = express();
 const port: any = process.env.PORT;
