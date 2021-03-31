@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 import './config/dbConnection';
 import router from './helpers/routerIndex'
+import swagger from './config/swagger';
 
 
 const app: any = express();
@@ -14,6 +15,13 @@ app.use(express.json());
 // set the view engine to ejs
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+// for accessing files in req.files
+import fileUpload from 'express-fileupload';
+app.use(fileUpload());
+
+// swagger use
+swagger(app);
 
 // Routes setup
 const apiRoutes: any = router();
