@@ -1,8 +1,11 @@
 import express from 'express';
 import './config/dbConnection';
 import router from './helpers/routerIndex'
+import {config} from 'dotenv';
+config();
+
 const app: any = express();
-const port: number = 4000;
+const port: any = process.env.PORT;
 
 app.use(express.urlencoded({limit: '50mb', extended: false}));
 app.use(express.json());
