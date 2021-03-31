@@ -4,17 +4,14 @@ import {Sequelize} from "sequelize";
 const host: any = process.env.DB_HOST
 const port: any = process.env.DB_PORT
 const dialect: any = process.env.DB_DIALECT
-const database: any = process.env.DB_DATABASE
-const username: any = process.env.DB_USERNAME
-const password: any = process.env.DB_PASSWORD
 const sequelize = new Sequelize(
-    database,
-    username,
-    password,
+    process.env.DB_DATABASE,
+    process.env.DB_USERNAME,
+    process.env.DB_PASSWORD,
     {
       host,
       port,
-      dialect : 'mysql',
+      dialect ,
       logging: function(str) {
         // do your own logging
         console.log(str);

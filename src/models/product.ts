@@ -21,8 +21,8 @@ const Product: any = db.define('product', {
     rate: {type: Sequelize.STRING,},
     quantity: {type: Sequelize.INTEGER,},
     gross_amount: {type: Sequelize.FLOAT},
-    location: {type: Sequelize.FLOAT},
-    order_date: {type: Sequelize.FLOAT},
+    location: {type: Sequelize.STRING},
+    order_date: {type: Sequelize.DATE},
 });
 
 export default Product;
