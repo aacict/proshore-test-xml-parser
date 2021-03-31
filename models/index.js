@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const db = {};
 
-const sequelize = require('../Middleware/dbConnection');
+const sequelize = require('../src/config/dbConnection');
 
 
 fs
