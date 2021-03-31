@@ -11,34 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body class="container">
-    <div class="container">
-        <% if(page === 'user-info'){%>
-            <div class="mx-auto" style="margin: 50px;">
-            <h5 style="color: green;">Successfully added pattern<%= email_pattern%></h5>
-            </div>
-            <div class="mx-auto">
-            <a class="btn btn-primary" href="/user-info" role="button">Add more patterns</a>
-            <a class="btn btn-primary" href="/domain-email" role="button">Generate email</a>
-            </div>
-            <% }else if(page === 'domain-email'){ %>
-            <div class="mx-auto">
-                <h5 style="color: green;">Here is your generated email <%= user_email%></h5>
-            </div>
-            <div class="mx-auto" style="margin: 50px;">
-            <a class="btn btn-primary" href="/user-info" role="button">Add more patterns</a>
-            <a class="btn btn-primary" href="/domain-email" role="button">Generate email for user</a>
-            </div>
-              <%}else{%>
-                <div class="mx-auto">
-                    <h5 style="color: blue;">Sorry this domain doesnot have any domain</h5>
-                </div>
-                <div class="mx-auto" style="margin: 50px;">
-                <a class="btn btn-primary" href="/user-info" role="button">Add more patterns</a>
-                <a class="btn btn-primary" href="/domain-email" role="button">Generate email for user</a>
-                </div>
-                  <%}%>
-     
-        </div>
+   orders
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
