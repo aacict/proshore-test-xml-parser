@@ -2,6 +2,7 @@ import {Sequelize} from "sequelize";
 
 // Option 1: Passing parameters separately
 const host: any = process.env.DB_HOST
+const port: any = process.env.DB_PORT
 const dialect: any = process.env.DB_DIALECT
 const database: any = process.env.DB_DATABASE
 const username: any = process.env.DB_USERNAME
@@ -12,6 +13,7 @@ const sequelize = new Sequelize(
     password,
     {
       host,
+      port,
       dialect : 'mysql',
       logging: function(str) {
         // do your own logging
