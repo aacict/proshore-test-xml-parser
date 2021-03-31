@@ -5,13 +5,13 @@ const pageControllers = {
       res.render('upload',{});
     },
 
-    // getOrderProducts: (req, res, next)=> {
-    //   res.render('products',{});
-    // },
+    getOrderProductListPage: (req, res, next)=> {
+      res.render('products',{});
+    },
 
-    // getOrders: (req, res, next)=> {
-    //   res.render('orders',{});
-    // }
+    getOrderListPage: (req, res, next)=> {
+      res.render('orders',{});
+    }
 }
 
 export default pageControllers;
