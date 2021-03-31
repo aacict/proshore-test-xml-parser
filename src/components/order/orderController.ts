@@ -1,4 +1,4 @@
-import { Order } from "../../models";
+import Model from "../../models";
 const services = {
   getOrders: (req, res, next)=> {
     res.render('orders',{});
