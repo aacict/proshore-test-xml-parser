@@ -1,0 +1,52 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Proshore assignment",
+        "description": "",
+        "version": "0.1.9"
+    },
+    "paths": {
+        "/api/v1/sign-up-step1": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Create new user",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "lang",
+                        "type": "string",
+                        "description": "input alpha code 2 for the language"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "dial_code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "phone"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "A list of users"
+                    }
+                }
+            }
+        }
+    }
+}
