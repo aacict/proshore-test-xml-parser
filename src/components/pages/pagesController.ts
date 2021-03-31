@@ -1,14 +1,17 @@
 
 const pageControllers = {
   //send user info page to the view
-    getNameEmailForm: (req, res, next)=> {
-      res.render('userPage',{page:'user-info', errors:{}, oldValue:{}});
+    getUploadPage: (req, res, next)=> {
+      res.render('upload',{});
     },
 
-  //send domain info page to the view
-    getNameDomainForm: (req, res, next)=> {
-      res.render('userPage',{page:'domain-email', errors:{},  oldValue: {}});
-    }
+    // getOrderProducts: (req, res, next)=> {
+    //   res.render('products',{});
+    // },
+
+    // getOrders: (req, res, next)=> {
+    //   res.render('orders',{});
+    // }
 }
 
 export default pageControllers;

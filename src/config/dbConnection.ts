@@ -1,19 +1,37 @@
-'use strict'
-//Import the mongoose module
-import mongoose from 'mongoose';
+import {Sequelize} from "sequelize";
 
-//Set up default mongoose connection
-const mongoDB: string = `mongodb://localhost:27017/youngDb`;
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
+// Option 1: Passing parameters separately
+const host: any = process.env.DB_HOST
+const dialect: any = process.env.DB_DIALECT
+const database: any = process.env.DB_DATABASE
+const username: any = process.env.DB_USERNAME
+const password: any = process.env.DB_PASSWORD
+const sequelize = new Sequelize(
+    database,
+    username,
+    password,
+    {
+      host,
+      dialect : 'mysql',
+      logging: function(str) {
+        // do your own logging
+        console.log(str);
+      },
+      define: {
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_0900_ai_ci',
+        timestamps: false,
+      },
+    },
+);
 
-//Get the default connection
-const db:any = mongoose['connection'];
+sequelize
+    .authenticate()
+    .then(() => {
+      console.log('Database Connection has been established successfully.');
+    })
+    .catch((err) => {
+      console.log('Unable to connect to the database:', err);
+    });
 
-//Bind connection to error event (to get notification of connection errors)
-db.once('connected', async () => {  console.log("connection to database successful")});
-db.on('error', async (err: any) => { 
-  console.error("Error in mongodb connection: ", err);
-  db.disconnect();
-});
-
-export {db, mongoose}
+export default sequelize;

@@ -1,6 +1,7 @@
-import EmailPattern from './email-pattern'
+import Product from './product';
+import Order from './order';
 
-//export each db modal
-export {
-    EmailPattern
+export default {
+    Product,
+    Order
 }

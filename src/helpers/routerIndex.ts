@@ -1,12 +1,12 @@
 import {Router} from 'express';
-import userRoute from '../components/User/userRoute';
-import pagesRoute from '../components/pages/pagesRoute';
+import orderRoute from '../components/order/orderRoute';
+import pageRoute from '../components/pages/pagesRoute';
 
 //routes initialization
 const router = () => {
   const router:any = Router();
-  userRoute(router);
-  pagesRoute(router);
+  orderRoute(router);
+  pageRoute(router);
   return router;
 };
 
