@@ -2,7 +2,7 @@ import fileController from './fileController'
 import validations from "../../middlewares/inputValidations";
 
 const routes = (router: any) => {
-  router.post("/upload",validations['fileValidation'], fileController.uploadFile);
+  router.post("/upload", fileController.uploadCsvFile);
   router.get("/download", fileController.downloadFile);
 };
 
