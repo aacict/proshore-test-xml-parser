@@ -18,7 +18,7 @@
     <form action="/upload" method="POST" enctype="multipart/form-data">
       <div class="form-row align-items-center" >
         <div class="col-auto">
-          <input type="file" class="form-control mb-2" id="file" name="file" placeholder="Choose file" required>
+          <input type="file" class="form-control mb-2" id="file" name="file" placeholder="Choose file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
         </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-primary mb-2">Upload</button>
@@ -27,7 +27,7 @@
     </form>
   </div>
   <div style="margin-left: auto;" class="">
-    <form action="/download-filter/product" method="POST">
+    <form action="/download" method="POST">
       <div class="form-row align-items-center" >
         <div class="col-auto">
           <input type="text" class="form-control mb-2 datepicker" id="" name="date" placeholder="enter start date" required>
