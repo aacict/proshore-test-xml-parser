@@ -5,7 +5,7 @@ PRE-REQUIREMENTS:
 
 -typescript
 
--Mysql
+-mysql
 
 
 STEPS:
