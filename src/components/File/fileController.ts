@@ -10,14 +10,11 @@ const controller = {
     const sheet_name_list = workbook.SheetNames;
     const data = utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
        for (let index = 0; index < data.length; index++) {
-        console.log('real:',data[index])
-
          const keys = Object.keys(data[index])
          const product: any = {}
          keys.map((key)=> {
             product[key.trim().toLowerCase().replace(' ','_')] = data[index][key]
          })
-         console.log(product)
         const order = await Model.Order.findOne({where:{order_number: data[index]['Order Number'] }});
         if(!order){
           const newOrder = await Model.Order.create({order_number: data[index]['Order Number'] });
