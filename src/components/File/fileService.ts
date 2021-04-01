@@ -1,36 +1,19 @@
 import Model from "../../models";
 import { Op } from "sequelize";
 import moment from "moment";
+import ProductService from "../product/productService";
 import xlsx from 'json-as-xlsx';
 
 const service = {
   downloadFile: async(req: any, res: any, next: any)=> {
    try {
-    const limit = req.query['limit'] && req.query['limit'] != 0 ? parseInt(req.query['limit'], 10) : 10;
-    const page = req.query['page'] && req.query['page'] != 0 ? parseInt(req.query['page'], 10) : 1;
-    const offset = (page - 1) * limit;
     const dates = req.body['date'].split('-')
     const startDate = moment(dates[0].trim()).startOf('day')
     const endDate = moment(dates[1].trim()).endOf('day')
     const products =  await Model.Product.findAll({where:{ date: {[Op.gte]: startDate, [Op.lte]: endDate} }})
-      if(products || products.length == 0){
-        const products = await Model.Product.findAll({limit ,offset});
-        const total_products = await Model.Product.count();
-        const responseProducts = await Promise.all(
-          products.map(async(product)=>{
-              const tempProduct = JSON.parse(JSON.stringify(product))
-              const order = await Model.Order.findOne({where:{id: product.order_id}});
-              tempProduct['order_number'] = order['order_number']
-              return tempProduct;
-          })
-        )
-        const data ={
-          products:responseProducts,
-          page,
-          limit,
-          total_products
-        }
-          return res.render('products',{data, error:{noData: 'This range do not have any data'}})
+      if(!products || products.length == 0){
+        const data = await ProductService.getProducts(req, res, next)
+        return res.render('products',{data, error:{noData: 'This range do not have any data'}})
       }
     const columns = [
         { label: 'Product', value: row => (row.product)}, 
