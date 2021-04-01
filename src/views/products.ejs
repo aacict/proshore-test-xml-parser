@@ -9,12 +9,92 @@
 
 <!-- CSS (load bootstrap from a CDN) -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body class="container">
-   products
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+  <div style="display: flex; padding-top: 50px;">
+     <div style="" class=" ">
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <div class="form-row align-items-center" >
+        <div class="col-auto">
+          <input type="file" class="form-control mb-2" id="file" name="file" placeholder="Choose file" required>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-2">Upload</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div style="margin-left: auto;" class="">
+    <form action="/download-filter/product" method="POST">
+      <div class="form-row align-items-center" >
+        <div class="col-auto">
+          <input type="text" class="form-control mb-2 datepicker" id="" name="date" placeholder="enter start date" required>
+        </div>
+        <!-- <div class="col-auto">
+          <input type="text" class="form-control mb-2 datepicker" id="" name="end_date" placeholder="enter end date" required>
+        </div> -->
+        <!-- <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-2" value="filter" name="submit">Filter</button>
+        </div> -->
+        <div class="col-auto">
+          <button type="submit" class="btn btn-success mb-2" value="download" name="submit">Download</button>
+        </div>
+      </div>
+    </form>
+  
+  </div>
+  </div>
+  <% if(error && error['noData']){ %>
+        <div style="color: firebrick; text-align:right;"><%= error['noData']%> </div>
+  <% }%>
+  <span></span>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Order Number</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Rate</th>
+        <th scope="col">Gross Amount</th>
+        <th scope="col">Location</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.products.forEach((row, index) => { %>
+        <tr>
+          <td><%= data.page == 1 ? index + 1 : (index + data.page * data.limit) - data.limit + 1  %></td>
+          <td><%= row.product %></td>
+          <td><%= row.order_number %></td>
+          <td><%= row.brand %></td>
+          <td><%= row.quantity %></td>
+          <td><%= row.rate %></td>
+          <td><%= row.gross_amount %></td>
+          <td><%= row.location %></td>
+          <td><%= row.date %></td>
+        </tr>
+     <% }) %>
+    </tbody>
+  </table>
+  <% for(i=1; i<= Math.ceil(data.total_products/10); i++) { %>
+    <a href="/product-list?page=<%= i%>&limit=10"><%= i%></a>
+ <% } %>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+  <script>
+    var start = moment().subtract(29, 'days');
+    var end = moment();
+   $('.datepicker').daterangepicker({});
+  </script>
 </body>
 </html>
 

@@ -3,11 +3,11 @@ import Sequelize from 'sequelize';
 import Product from './product';
 
 const Order: any = db.define('order', {
-  order_id: {
+  id: {
     primaryKey: true,
     type: Sequelize.INTEGER,
     allowNull: false,
-    autoIncrement: false,
+    autoIncrement: true,
     unique: true,
   },
   order_number: {
@@ -17,11 +17,6 @@ const Order: any = db.define('order', {
       key: 'id',
     },
   }
-});
-
-Order.hasMany(Product, {
-  foreignKey: 'order_id',
-  as: 'products',
 });
 
 export default Order;

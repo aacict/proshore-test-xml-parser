@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
       dialect ,
       logging: function(str) {
         // do your own logging
-        console.log(str);
+        // console.log(str);
       },
       define: {
         charset: 'utf8mb4',
