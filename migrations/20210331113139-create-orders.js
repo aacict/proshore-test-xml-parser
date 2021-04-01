@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('orders', {
-      order_id: {
+      id: {
         primaryKey: true,
         type: Sequelize.INTEGER,
         allowNull: false,
